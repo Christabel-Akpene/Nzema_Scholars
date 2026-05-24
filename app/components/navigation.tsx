@@ -23,7 +23,7 @@ export default function Navigation(){
 
     return (
       <>
-        <header className="bg-brand-light border-b border-brand fixed">
+        <header className="bg-brand-light border-b border-brand w-full fixed z-50">
           <div className="mx-auto flex items-center justify-between px-6 py-4">
             <h1 className="text-2xl font-bold text-brand">Nzema Scholars</h1>
             <div className="md:hidden">
