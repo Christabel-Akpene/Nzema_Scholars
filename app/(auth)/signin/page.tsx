@@ -1,3 +1,6 @@
+"use client"
+import { signIn } from "@/lib/auth-client";
+
 import { FaGoogle } from "react-icons/fa"
 
 export default function SignIn(){
@@ -13,7 +16,7 @@ export default function SignIn(){
             </p>
           </div>
           <div className="mt-8">
-            <button className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
+            <button onClick={signIn} className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200 cursor-pointer">
               <FaGoogle />
               <span className="text-base font-medium">
                 Continue with Google
