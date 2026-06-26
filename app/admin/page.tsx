@@ -17,6 +17,6 @@ export default async function AdminPage(){
     }
     
     return (
-        <h1 className="text-3xl">Admin Page</h1>
+        <h1 className="text-3xl">Admin Dashboard</h1>
     )
 }
