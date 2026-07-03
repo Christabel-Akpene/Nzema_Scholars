@@ -72,3 +72,29 @@ model Verification {
 
   @@map("verification")
 }
+
+model Scholarship {
+  id String @id @default(cuid())
+  name String
+  about String
+  deadline DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  eligibility Eligibility[]
+  documents  Document[]
+}
+
+
+model Eligibility {
+  id String @id @default(cuid())
+  scholarship Scholarship @relation(fields: [scholarshipId], references: [id])
+  scholarshipId String
+  label String
+}
+
+model Document {
+  id String @id @default(cuid())
+  scholarship Scholarship @relation(fields: [scholarshipId], references: [id])
+  scholarshipId String
+  label String
+}

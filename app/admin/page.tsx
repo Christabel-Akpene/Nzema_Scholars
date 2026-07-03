@@ -19,7 +19,7 @@ export default async function AdminPage(){
     
     return (
       <div>
-        <div className="my-4">
+        <div className="mb-4">
           <h1 className="text-2xl font-semibold text-brand">
             Ecosystem Overview
           </h1>
@@ -65,7 +65,7 @@ export default async function AdminPage(){
 
         {/* recent scholarship applications */}
 
-        
+
       </div>
     );
 }
