@@ -78,6 +78,7 @@ model Scholarship {
   name String
   about String
   deadline DateTime?
+  url String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   eligibility Eligibility[]
