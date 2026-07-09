@@ -18,7 +18,7 @@ export type ActionResponse = {
   error?: string;
 };
 
-export async function createScholarship(data: ScholarshipData): Promise<ActionResponse> {
+export async function createScholarship(prevState: ActionResponse | null, formData: FormData): Promise<ActionResponse> {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -32,15 +32,36 @@ export async function createScholarship(data: ScholarshipData): Promise<ActionRe
       redirect("/dashboard");
     }
 
+    const data = {
+      name: formData.get("name") as string,
+      about: formData.get("about") as string,
+      url: formData.get("url") as string,
+      deadline: formData.get("deadline") as string || undefined,
+      eligibility: formData.getAll("eligibility") as string[],
+      documents: formData.getAll("documents") as string[]
+    }
+
+    const otherEligibility = formData.get("other_eligibility") as string
+    const otherDocument = formData.get("other_document") as string
+
+    if (otherEligibility){
+      data.eligibility.push(otherEligibility)
+    }
+
+    if (otherDocument){
+      data.documents.push(otherDocument)
+    }
+
     const validationResult = scholarshipSchema.safeParse(data);
 
-    if (!validationResult.success){
-        return{
-            success: false,
-            message: "Validation failed",
-            errors: z.flattenError(validationResult.error)
-        }
+    if (!validationResult.success) {
+      return {
+        success: false,
+        message: "Validation failed",
+        errors: z.flattenError(validationResult.error),
+      };
     }
+
     const validatedData = validationResult.data
 
     await prisma.scholarship.create({
@@ -57,6 +78,7 @@ export async function createScholarship(data: ScholarshipData): Promise<ActionRe
         }
       },
     });
+
 
     return { success: true, message: "Scholarship data added successfully"}
     

@@ -3,6 +3,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { Toaster } from "@/components/ui/sonner";
 import AdminSidebar from "../components/admin-sidebar";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,7 @@ export default async function AdminLayout({
           </header>
           <main className="flex flex-1 flex-col gap-4 p-4">{children}</main>
         </SidebarInset>
+        <Toaster/>
       </SidebarProvider>
   );
 }
