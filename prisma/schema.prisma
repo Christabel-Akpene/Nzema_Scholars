@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -15,23 +10,22 @@ datasource db {
 model User {
   id            String    @id
   name          String
-  email         String
+  email         String    @unique
   emailVerified Boolean
   role          String    @default("user")
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
-  sessions      Session[]
   accounts      Account[]
+  sessions      Session[]
 
-  @@unique([email])
   @@map("user")
 }
 
 model Session {
   id        String   @id
   expiresAt DateTime
-  token     String
+  token     String   @unique
   createdAt DateTime
   updatedAt DateTime
   ipAddress String?
@@ -39,7 +33,6 @@ model Session {
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([token])
   @@map("session")
 }
 
@@ -48,7 +41,6 @@ model Account {
   accountId             String
   providerId            String
   userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accessToken           String?
   refreshToken          String?
   idToken               String?
@@ -58,6 +50,7 @@ model Account {
   password              String?
   createdAt             DateTime
   updatedAt             DateTime
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("account")
 }
@@ -74,28 +67,27 @@ model Verification {
 }
 
 model Scholarship {
-  id String @id @default(cuid())
-  name String
-  about String
-  deadline DateTime?
-  url String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String        @id @default(cuid())
+  name        String
+  about       String        @db.Text
+  deadline    DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  url         String
+  documents   Document[]
   eligibility Eligibility[]
-  documents  Document[]
 }
 
-
 model Eligibility {
-  id String @id @default(cuid())
-  scholarship Scholarship @relation(fields: [scholarshipId], references: [id])
+  id            String      @id @default(cuid())
   scholarshipId String
-  label String
+  label         String
+  scholarship   Scholarship @relation(fields: [scholarshipId], references: [id])
 }
 
 model Document {
-  id String @id @default(cuid())
-  scholarship Scholarship @relation(fields: [scholarshipId], references: [id])
+  id            String      @id @default(cuid())
   scholarshipId String
-  label String
+  label         String
+  scholarship   Scholarship @relation(fields: [scholarshipId], references: [id])
 }
