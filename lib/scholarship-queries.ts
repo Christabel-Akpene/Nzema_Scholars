@@ -1,17 +1,14 @@
 import { prisma } from "./prisma";
 
-export async function getScholarships() {
-    return await prisma.scholarship.findMany({
+export async function getScholarship(id: string) {
+    return await prisma.scholarship.findUnique({
         where:{
-            deadline: { gte: new Date() }
+            id: id
         },
         include:{
             eligibility: true,
             documents: true
         },
-        orderBy: {
-            createdAt: "desc"
-        }
     })
 }
 
