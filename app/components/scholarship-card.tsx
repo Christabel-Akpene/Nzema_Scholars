@@ -1,4 +1,4 @@
-import { getScholarshipCard } from "@/lib/scholarship-queries";
+import { getScholarshipCard } from "@/lib/admin-scholarship-queries";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 

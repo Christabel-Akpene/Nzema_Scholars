@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
-import { getScholarship } from "@/lib/scholarship-queries";
+import { getScholarship } from "@/lib/admin-scholarship-queries";
 import { ClipboardCheck, File, Star } from "lucide-react";
 import Link from "next/link";
 
@@ -11,9 +11,6 @@ type ScholarshipDetailsCardProps = {
 const ScholarshipDetailsCard = ({
   scholarshipDetails,
 }: ScholarshipDetailsCardProps) => {
-  
-
-
   return (
     <div className="my-4 md:my-8">
       <div className="flex flex-col md:flex-row md:justify-between">
@@ -81,11 +78,10 @@ const ScholarshipDetailsCard = ({
             </Button>
           </Link>
           <Link href={`/scholarships/${scholarshipDetails!.id}/apply`}>
-                    <Button className="w-full sm:w-auto bg-transparent border border-brand text-brand p-6 cursor-pointer hover:bg-transparent">
-            Submit Application Details
-          </Button>
+            <Button className="w-full sm:w-auto bg-transparent border border-brand text-brand p-6 cursor-pointer hover:bg-transparent">
+              Submit Application Details
+            </Button>
           </Link>
-
         </div>
         <div className="my-4 text-sm text-center">
           <p>
