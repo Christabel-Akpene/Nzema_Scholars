@@ -18,6 +18,7 @@ model User {
   updatedAt     DateTime
   accounts      Account[]
   sessions      Session[]
+  profile       UserProfile?
 
   @@map("user")
 }
@@ -76,6 +77,7 @@ model Scholarship {
   url         String
   documents   Document[]
   eligibility Eligibility[]
+  applications ScholarshipApplication[]
 }
 
 model Eligibility {
@@ -90,4 +92,56 @@ model Document {
   scholarshipId String
   label         String
   scholarship   Scholarship @relation(fields: [scholarshipId], references: [id])
+}
+
+
+model UserProfile {
+  id  String @id @default(cuid())
+  userId String @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // personal information
+  fullname String
+  phone String
+  email String
+  currentLocation String
+  hometown String
+  dateOfBirth DateTime
+  gender String
+
+  // academic information
+  school String
+  educationLevel String
+  currentYear String
+  programme String
+  gpa String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  applications ScholarshipApplication[]
+
+  @@map("user_profile")
+}
+
+model ScholarshipApplication{
+  id String @id @default(cuid())
+  userProfileId String
+  userProfile UserProfile @relation(fields:[userProfileId], references:[id], onDelete: Cascade)
+  scholarshipId String
+  scholarship Scholarship @relation(fields:[scholarshipId], references:[id], onDelete: Cascade)
+  status ApplicationStatus @default(pending)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userProfileId, scholarshipId])
+  @@map("scholarship_application")
+}
+
+
+enum ApplicationStatus {
+  pending
+  reviewing
+  accepted
+  rejected
 }
