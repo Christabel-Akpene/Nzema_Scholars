@@ -79,11 +79,11 @@ export async function createScholarship(prevState: ActionResponse | null, formDa
       },
     });
 
-
+    revalidatePath("/admin/scholarships");
     return { success: true, message: "Scholarship data added successfully"}
     
   } catch (error) {
-    console.error("Error creating issue: ", error)
+    console.error("Error creating scholarship: ", error)
     return {
       success: false,
       message: "An error occured while creating scholarship form data",

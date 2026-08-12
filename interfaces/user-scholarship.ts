@@ -6,7 +6,7 @@ export const UserScholarshipSchema = z.object({
     phonenumber: z.string().min(10, "Phone number must be at least 10 characters"),
     current_location: z.string().min(3, "Current location must be at least 3 characters"),
     hometown: z.string().min(3, "Hometown must be at least 3 characters"),
-    dob: z.coerce.date().optional(),
+    dob: z.coerce.date(),
     gender: z.enum(["male", "female", "prefer_not"], {
         error: "Please select a gender",
     }),

@@ -115,6 +115,7 @@ model UserProfile {
   currentYear String
   programme String
   gpa String
+  hasApplied String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
