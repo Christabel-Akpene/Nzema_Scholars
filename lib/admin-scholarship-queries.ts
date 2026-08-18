@@ -30,3 +30,21 @@ export async function getScholarshipCard(){
         }
     })
 }
+
+export async function getScholarshipList(){
+    await prisma.scholarship.findMany({
+        select: {
+            id: true,
+            name: true,
+            deadline: true,
+            _count: {
+                select: {
+                    applications: true
+                }
+            }
+        },
+        orderBy: {
+            createdAt: "desc"
+        }
+    })
+}

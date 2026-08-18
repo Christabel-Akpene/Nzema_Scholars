@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CirclePlus } from "lucide-react";
 import { useState } from "react";
 import AddScholarshipDialog from "@/app/components/add-scholarship-dialog";
+import AdminScholarshipDetails from "@/app/components/admin-scholarship-details";
 
 const AdminScholarshipPage = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -26,10 +27,18 @@ const AdminScholarshipPage = () => {
           </p>
         </Button>
       </div>
-
       <AddScholarshipDialog open={dialogOpen} onOpenChange={setDialogOpen} />
+{/* Filters */}
+      <div className="flex justify-end mt-4">
+        <p className="flex items-center p-2 border">All</p>
+        <p className="flex items-center p-2 border">Active</p>
+        <p className="flex items-center p-2 border">Expired</p>   
+      </div>
 
-      <div>{/* table goes here */}</div>
+      <div className="mt-4">
+        {/* Scholarship Table */}
+        <AdminScholarshipDetails/>
+      </div>
     </div>
   );
 };
