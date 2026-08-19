@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CirclePlus } from "lucide-react";
 import { useState } from "react";
 import AddScholarshipDialog from "@/app/components/add-scholarship-dialog";
-import AdminScholarshipDetails from "@/app/components/admin-scholarship-details";
+import AdminScholarshipDetails from "@/app/components/admin-scholarship-table";
 
 const AdminScholarshipPage = () => {
   const [dialogOpen, setDialogOpen] = useState(false);

@@ -25,14 +25,13 @@ export async function getScholarshipCard(){
             id: true,
             name: true,
             about: true, 
-            deadline: true,
-            
+            deadline: true,   
         }
     })
 }
 
 export async function getScholarshipList(){
-    await prisma.scholarship.findMany({
+    return await prisma.scholarship.findMany({
         select: {
             id: true,
             name: true,
@@ -43,8 +42,7 @@ export async function getScholarshipList(){
                 }
             }
         },
-        orderBy: {
-            createdAt: "desc"
-        }
     })
 }
+
+
