@@ -1,43 +1,19 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import { CirclePlus } from "lucide-react";
-import { useState } from "react";
-import AddScholarshipDialog from "@/app/components/add-scholarship-dialog";
-import AdminScholarshipDetails from "@/app/components/admin-scholarship-table";
+import AdminScholarshipList from "@/app/components/admin-scholarship-list";
+import ScholarshipPageHeader from "@/app/components/admin-scholarship-page-header";
 
 const AdminScholarshipPage = () => {
-  const [dialogOpen, setDialogOpen] = useState(false);
-
   return (
     <div>
-      {/* header */}
-      <div className="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center">
-        <div className="sm:flex-1">
-          <h1 className="text-2xl font-bold text-brand">Scholarships</h1>
-          <p>Manage and track available scholarships for students</p>
-        </div>
-        <Button
-          className="w-full p-4 bg-accent sm:w-auto cursor-pointer hover:bg-accent-hover"
-          onClick={() => setDialogOpen(true)}
-        >
-          <p className="flex space-x-2 items-center">
-            <CirclePlus />
-            <span>Add Scholarship</span>
-          </p>
-        </Button>
-      </div>
-      <AddScholarshipDialog open={dialogOpen} onOpenChange={setDialogOpen} />
-{/* Filters */}
+      <ScholarshipPageHeader />
+
       <div className="flex justify-end mt-4">
         <p className="flex items-center p-2 border">All</p>
         <p className="flex items-center p-2 border">Active</p>
-        <p className="flex items-center p-2 border">Expired</p>   
+        <p className="flex items-center p-2 border">Expired</p>
       </div>
 
       <div className="mt-4">
-        {/* Scholarship Table */}
-        <AdminScholarshipDetails/>
+        <AdminScholarshipList />
       </div>
     </div>
   );
