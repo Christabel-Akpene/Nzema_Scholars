@@ -11,14 +11,24 @@ import {
 const AdminScholarshipList = async () => {
   const scholarships = await getScholarshipList();
   return (
-    <Table className="border rounded-lg">
+    <Table>
       <TableHeader>
-        <TableRow>
-          <TableHead>Scholarship Name</TableHead>
-          <TableHead>Deadline</TableHead>
-          <TableHead>Applications</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Actions</TableHead>
+        <TableRow className="bg-slate-50 hover:bg-slate-50 border-b border-slate-100">
+          <TableHead className="text-xs font-semibold text-slate-400 uppercase tracking-wider pl-5 py-3">
+            Scholarship Name
+          </TableHead>
+          <TableHead className="text-xs font-semibold text-slate-400 uppercase tracking-wider py-3">
+            Deadline
+          </TableHead>
+          <TableHead className="text-xs font-semibold text-slate-400 uppercase tracking-wider py-3">
+            Applications
+          </TableHead>
+          <TableHead className="text-xs font-semibold text-slate-400 uppercase tracking-wider py-3">
+            Status
+          </TableHead>
+          <TableHead className="text-xs font-semibold text-slate-400 uppercase tracking-wider py-3">
+            Actions
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
