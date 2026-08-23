@@ -10,14 +10,16 @@ const AdminScholarshipTableRow = ({ scholarship }: AdminScholarshipTableRowProps
     const isActive = scholarship.deadline && scholarship.deadline >= new Date();
     const appCount = scholarship._count.applications;
   return (
-    <TableRow className="group border-b border-slate-100 hover:bg-slate-50/60 transition-colors duration-150">
+    <TableRow className="border-b border-border hover:bg-(--brand-light)/40 transition-colors duration-150">
       {/* Name with left status stripe */}
       <TableCell className="pl-5 py-4">
         <div className="flex items-center gap-3">
           <div
-            className={`w-1 h-8 rounded-full shrink-0 ${isActive ? "bg-teal-400" : "bg-slate-200"}`}
+            className={`w-1 h-8 rounded-full shrink-0 ${
+              isActive ? "bg-(--brand)" : "bg-(--border-strong)"
+            }`}
           />
-          <span className="text-sm font-medium text-slate-800">
+          <span className="text-sm font-medium text-(--text-primary)">
             {scholarship.name}
           </span>
         </div>
@@ -25,28 +27,32 @@ const AdminScholarshipTableRow = ({ scholarship }: AdminScholarshipTableRowProps
 
       {/* Deadline */}
       <TableCell className="py-4">
-        <span className="text-sm text-slate-500">
-          {scholarship.deadline ? (
-            scholarship.deadline.toLocaleDateString("en-GB", {
+        {scholarship.deadline ? (
+          <span className="text-sm text-(--text-secondary)">
+            {scholarship.deadline.toLocaleDateString("en-GB", {
               day: "numeric",
               month: "short",
               year: "numeric",
-            })
-          ) : (
-            <span className="text-slate-300 italic">No deadline</span>
-          )}
-        </span>
+            })}
+          </span>
+        ) : (
+          <span className="text-sm text-(--text-muted) italic">
+            No deadline
+          </span>
+        )}
       </TableCell>
 
       {/* Application count */}
       <TableCell className="py-4">
         <div className="flex items-center gap-1.5">
           <span
-            className={`text-sm font-semibold ${appCount > 0 ? "text-teal-600" : "text-slate-400"}`}
+            className={`text-sm font-semibold ${
+              appCount > 0 ? "text-accent" : "text-(--text-muted)"
+            }`}
           >
             {appCount}
           </span>
-          <span className="text-xs text-slate-300">
+          <span className="text-xs text-(--text-muted)">
             {appCount === 1 ? "applicant" : "applicants"}
           </span>
         </div>
@@ -55,13 +61,13 @@ const AdminScholarshipTableRow = ({ scholarship }: AdminScholarshipTableRowProps
       {/* Status badge */}
       <TableCell className="py-4">
         {isActive ? (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-teal-50 text-teal-700 border border-teal-100">
-            <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-(--brand-light) text-(--brand) border border-(--brand)/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-(--brand) animate-pulse" />
             Active
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-400 border border-slate-200">
-            <span className="w-1.5 h-1.5 rounded-full bg-slate-300" />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-(--section-bg) text-(--text-muted) border border-(--border-strong)">
+            <span className="w-1.5 h-1.5 rounded-full bg-(--border-strong)" />
             Closed
           </span>
         )}
@@ -70,10 +76,10 @@ const AdminScholarshipTableRow = ({ scholarship }: AdminScholarshipTableRowProps
       {/* Actions */}
       <TableCell className="py-4">
         <div className="flex items-center gap-1">
-          <button className="p-1.5 rounded-md text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer">
+          <button className="p-1.5 rounded-md text-(--text-muted) hover:text-(--brand) hover:bg-(--brand-light) transition-colors">
             <Pencil size={14} />
           </button>
-          <button className="p-1.5 rounded-md text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors cursor-pointer">
+          <button className="p-1.5 rounded-md text-(--text-muted) hover:text-(--error) hover:bg-red-50 transition-colors">
             <Trash size={14} />
           </button>
         </div>
