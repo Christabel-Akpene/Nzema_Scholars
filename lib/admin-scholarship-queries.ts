@@ -45,4 +45,14 @@ export async function getScholarshipList(){
     })
 }
 
+export async function getScholarshipApplications(id:string){
+    return await prisma.scholarshipApplication.findMany({
+        where: {
+            scholarshipId: id
+        },
+        include: {
+            userProfile: true
+        },
+    })
+}
 
