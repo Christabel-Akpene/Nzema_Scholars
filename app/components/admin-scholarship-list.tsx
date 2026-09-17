@@ -11,19 +11,7 @@ import {
 const AdminScholarshipList = async () => {
   const scholarships = await getScholarshipList();
   return (
-    <div>
-      <div className="flex gap-1 text-xs font-medium justify-end my-4">
-        <button className="px-3 py-1.5 rounded-md bg-(--brand) text-white">
-          All
-        </button>
-        <button className="px-3 py-1.5 rounded-md text-(--text-muted) hover:bg-(--brand-light) hover:text-(--brand) transition-colors">
-          Accepted
-        </button>
-        <button className="px-3 py-1.5 rounded-md text-(--text-muted) hover:bg-(--brand-light) hover:text-(--brand) transition-colors">
-          Rejected
-        </button>
-      </div>
-      <Table>
+      <Table className="mt-4">
         <TableHeader>
           <TableRow className="bg-(--section-bg) hover:bg-(--section-bg) border-b border-border">
             <TableHead className="text-xs font-semibold text-(--text-muted) uppercase tracking-wider pl-5 py-3">
@@ -52,7 +40,6 @@ const AdminScholarshipList = async () => {
           ))}
         </TableBody>
       </Table>
-    </div>
   );
 };
 

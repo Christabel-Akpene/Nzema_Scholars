@@ -199,7 +199,7 @@ const AddScholarshipPage = () => {
         <Button
           type="submit"
           disabled={isPending}
-          className="w-full sm:w-auto bg-accent hover:bg-accent-hover cursor-pointer"
+          className="w-full sm:w-auto bg-accent hover:bg-accent-hover cursor-pointer py-6"
         >
           {isPending ? "Submitting..." : "Save Details"}
         </Button>
