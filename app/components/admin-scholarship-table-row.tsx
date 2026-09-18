@@ -3,8 +3,8 @@
 import { TableCell, TableRow } from "@/components/ui/table";
 import { getScholarshipList } from "@/lib/admin-scholarship-queries";
 import { Pencil, Trash } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import DeleteDialog from "./admin-delete-scholarship-dialog";
 
 type AdminScholarshipTableRowProps = {
   scholarship: Awaited<ReturnType<typeof getScholarshipList>>[number];
@@ -80,12 +80,10 @@ const AdminScholarshipTableRow = ({ scholarship }: AdminScholarshipTableRowProps
         {/* Actions */}
         <TableCell className="py-4">
           <div className="flex items-center gap-1">
-            <button className="p-1.5 rounded-md text-(--text-muted) hover:text-(--brand) hover:bg-(--brand-light) transition-colors">
+            <button className="p-1.5 rounded-md text-text-muted hover:text-brand hover:bg-brand-light transition-colors">
               <Pencil size={14} />
             </button>
-            <button className="p-1.5 rounded-md text-(--text-muted) hover:text-(--error) hover:bg-red-50 transition-colors">
-              <Trash size={14} />
-            </button>
+          <DeleteDialog id={scholarship.id} name={scholarship.name}/>
           </div>
         </TableCell>
       </TableRow>

@@ -84,14 +84,14 @@ model Eligibility {
   id            String      @id @default(cuid())
   scholarshipId String
   label         String
-  scholarship   Scholarship @relation(fields: [scholarshipId], references: [id])
+  scholarship   Scholarship @relation(fields: [scholarshipId], references: [id], onDelete: Cascade)
 }
 
 model Document {
   id            String      @id @default(cuid())
   scholarshipId String
   label         String
-  scholarship   Scholarship @relation(fields: [scholarshipId], references: [id])
+  scholarship   Scholarship @relation(fields: [scholarshipId], references: [id], onDelete: Cascade)
 }
 
 

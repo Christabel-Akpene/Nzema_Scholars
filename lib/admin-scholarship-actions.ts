@@ -79,7 +79,7 @@ export async function createScholarship(prevState: ActionResponse | null, formDa
       },
     });
 
-    revalidatePath("/admin/scholarships");
+    revalidatePath("/admin/scholarship");
     return { success: true, message: "Scholarship data added successfully"}
     
   } catch (error) {
@@ -94,3 +94,31 @@ export async function createScholarship(prevState: ActionResponse | null, formDa
 }
 
 
+export async function deleteScholarship(id: string): Promise<ActionResponse>{
+  try {
+        const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+
+    if (!session) {
+      redirect("/signin");
+    }
+
+    if (session.user.role !== "admin") {
+      redirect("/dashboard");
+    }
+
+    await prisma.scholarship.delete({
+      where: {id},
+    })
+    revalidatePath("/admin/scholarship")
+    return {success: true, message: "Scholarship deleted successfully"}
+
+  } catch (error) {
+    console.error("Error deleting scholarship: ", error)
+    return {
+      success: false,
+      message: "Failed to delete scholarship",
+    };
+  }
+}
