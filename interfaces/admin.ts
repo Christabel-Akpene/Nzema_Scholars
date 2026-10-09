@@ -8,15 +8,15 @@ export interface SideBarItem {
 }
 
 export const scholarshipSchema = z.object({
-  name: z.string().min(3, "Name muist be at least 3 characters"),
+  name: z.string().min(3, "Name must be at least 3 characters"),
   about: z.string().min(3, "Scholarship details must be about 3 characters"),
   deadline: z.coerce.date().optional(),
   url: z.url(),
   eligibility: z.array(
-    z.string().min(1, "Select at least one eligibility criteria"),
+    z.string().min(1).min(1, "Select at least one eligibility criteria"),
   ),
   documents: z.array(
-    z.string().min(1, "Select at least one eligibility criteria"),
+    z.string().min(1).min(1, "Select at least one document"),
   ),
 });
 

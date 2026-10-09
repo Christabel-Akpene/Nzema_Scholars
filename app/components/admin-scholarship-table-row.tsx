@@ -2,7 +2,7 @@
 
 import { TableCell, TableRow } from "@/components/ui/table";
 import { getScholarshipList } from "@/lib/admin-scholarship-queries";
-import { Pencil, Trash } from "lucide-react";
+import { Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import DeleteDialog from "./admin-delete-scholarship-dialog";
 

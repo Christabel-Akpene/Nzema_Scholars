@@ -1,5 +1,5 @@
 "use client";
-
+// # Admin section scholarship page for adding new scholarships
 import { Button } from "@/components/ui/button";
 import { createScholarship } from "@/lib/admin-scholarship-actions";
 import { ArrowLeft } from "lucide-react";
@@ -47,7 +47,7 @@ const AddScholarshipPage = () => {
           <label htmlFor="name" className="font-semibold">
             Name of Scholarship
           </label>
-          <input type="text" name="name" className="border p-3 rounded-md" />
+          <input type="text" id="name" name="name" className="border p-3 rounded-md" />
           {state?.errors?.fieldErrors?.name && (
             <p className="text-error text-sm">
               {state.errors.fieldErrors.name[0]}
@@ -78,7 +78,7 @@ const AddScholarshipPage = () => {
           <label htmlFor="url" className="font-semibold">
             Official Scholarship URL
           </label>
-          <input type="url" name="url" className="border p-3 rounded-md" />
+          <input type="url" id="url" name="url" className="border p-3 rounded-md" />
           {state?.errors?.fieldErrors?.url && (
             <p className="text-error text-sm">
               {state.errors.fieldErrors.url[0]}
@@ -92,6 +92,7 @@ const AddScholarshipPage = () => {
             Deadline
           </label>
           <input
+            id="deadline"
             type="date"
             name="deadline"
             className="border p-3 rounded-md"
